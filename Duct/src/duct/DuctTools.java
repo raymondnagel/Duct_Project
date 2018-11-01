@@ -4,6 +4,8 @@
  */
 package duct;
 
+import java.util.Random;
+
 /**
  *
  * @author rnagel
@@ -12,8 +14,13 @@ public abstract class DuctTools
 {    
     public static boolean SHOW_OUTPUT = true;
     public static boolean SHOW_ERRORS = true;
-    public static boolean SHOW_POPUPS = true;
 
+    public static final Random RANDOM;
+    
+    static {
+        RANDOM = new Random(System.currentTimeMillis());
+    }
+    
     public static void print(String text)
     {
         if (SHOW_OUTPUT)
@@ -55,8 +62,18 @@ public abstract class DuctTools
                     cCnt++;
                 }            
             }
-            System.err.println("JUST Error: " + ex.getClass().getCanonicalName());
+            System.err.println("DUCT Error: " + ex.getClass().getCanonicalName());
             System.err.println(builder.toString());
         }
+    }
+    
+    public static int getRandomInt(int min, int max)
+    {
+        return min + RANDOM.nextInt(max - min);
+    }
+    
+    public static boolean getRandomBool()
+    {
+        return RANDOM.nextBoolean();
     }
 }

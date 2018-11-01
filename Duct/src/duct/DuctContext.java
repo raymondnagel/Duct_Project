@@ -133,9 +133,9 @@ public final class DuctContext {
             else
             {
                 DuctTools.printLine("Package \"" + packageName + "\" is native, or contains no classes.");
-                DuctTools.printLine("Attempting standard JavaScript importPackage (not JUST-registered)...");
+                DuctTools.printLine("Attempting standard JavaScript importPackage (not DUCT-registered)...");
                 evaluateJavascriptAndThrow("importPackage(Packages." + packageName + ");");
-                DuctTools.printLine("Standard JavaScript importPackage completed without exception. Classes could not be registered in JUST.");
+                DuctTools.printLine("Standard JavaScript importPackage completed without exception. Classes could not be registered in DUCT.");
                 return true;
             }
         } catch (Exception ex)
@@ -193,10 +193,10 @@ public final class DuctContext {
             try {
                 evaluateJavascriptAndThrow("importClass(Packages." + c.getCanonicalName() + ");");
                 ductClasses.add(c);
-                DuctTools.printLine(c.getCanonicalName() + " [JUST util] was registered."); 
+                DuctTools.printLine(c.getCanonicalName() + " [DUCT util] was registered."); 
                 return true;
             } catch (ScriptException ex) {
-                DuctTools.printLine("There was an error registering class \"" + c.getCanonicalName() + "\" [JUST util]: " + ex.toString());
+                DuctTools.printLine("There was an error registering class \"" + c.getCanonicalName() + "\" [DUCT util]: " + ex.toString());
                 return false;
             }            
         }
